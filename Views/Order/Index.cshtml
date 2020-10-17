@@ -1,0 +1,94 @@
+﻿@model IEnumerable<OnlineStore.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th>
+                Edit
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelOrder => order.OrderId)
+            </td>
+            <td>
+                @(order.OrderDate.ToLongDateString())
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelOrder => order.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelOrder => order.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelOrder => order.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelOrder => order.DeliveryAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelOrder => order.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelOrder => order.Status)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@order.OrderId">Edit</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@order.OrderId">Details</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@order.OrderId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

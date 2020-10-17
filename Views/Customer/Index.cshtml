@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OnlineStore.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            
+          
+            <th>
+                Delete
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelCustomer => customer.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelCustomer => customer.Name)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelCustomer => customer.Email)
+                </td>
+                
+               
+                <td>
+                    <a asp-action="Delete" asp-route-id="@customer.CustomerId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

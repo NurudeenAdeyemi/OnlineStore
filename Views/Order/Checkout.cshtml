@@ -1,0 +1,439 @@
+﻿
+@section style {
+    <style>
+
+        .rower {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap; /* IE10 */
+            flex-wrap: wrap;
+            margin: 0 -16px;
+        }
+
+        .coler-25 {
+            -ms-flex: 25%; /* IE10 */
+            flex: 25%;
+        }
+
+        .coler-50 {
+            -ms-flex: 50%; /* IE10 */
+            flex: 50%;
+        }
+
+        .coler-75 {
+            -ms-flex: 75%; /* IE10 */
+            flex: 75%;
+        }
+
+        .coler-25,
+        .coler-50,
+        .coler-75 {
+            padding: 0 16px;
+        }
+
+        .containerer {
+            background-color: #f2f2f2;
+            padding: 5px 20px 15px 20px;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        labeler {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .icon-containerer {
+            margin-bottom: 20px;
+            padding: 7px 0;
+            font-size: 24px;
+        }
+
+        .btner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            width: 100%;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+            .btner:hover {
+                background-color: #45a049;
+            }
+
+        spaner.price {
+            float: right;
+            color: grey;
+        }
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+        (max-width: 800px) {
+            .row
+
+        {
+            flex-direction: column-reverse;
+        }
+
+        .coler-25 {
+            margin-bottom: 20px;
+        }
+
+        .modal-confirm {
+            color: #636363;
+            width: 325px;
+            font-size: 14px;
+        }
+
+            .modal-confirm .modal-content {
+                padding: 20px;
+                border-radius: 5px;
+                border: none;
+            }
+
+            .modal-confirm .modal-header {
+                border-bottom: none;
+                position: relative;
+            }
+
+            .modal-confirm h4 {
+                text-align: center;
+                font-size: 26px;
+                margin: 30px 0 -15px;
+            }
+
+            .modal-confirm .form-control, .modal-confirm .btn {
+                min-height: 40px;
+                border-radius: 3px;
+            }
+
+            .modal-confirm .close {
+                position: absolute;
+                top: -5px;
+                right: -5px;
+            }
+
+            .modal-confirm .modal-footer {
+                border: none;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 13px;
+            }
+
+            .modal-confirm .icon-box {
+                color: #fff;
+                position: absolute;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                top: -70px;
+                width: 95px;
+                height: 95px;
+                border-radius: 50%;
+                z-index: 9;
+                background: #82ce34;
+                padding: 15px;
+                text-align: center;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+            }
+
+                .modal-confirm .icon-box i {
+                    font-size: 58px;
+                    position: relative;
+                    top: 3px;
+                }
+
+
+            .modal-confirm.modal-dialog {
+                margin-top: 80px;
+            }
+
+            .modal-confirm .btn {
+                color: #fff;
+                border-radius: 4px;
+                background: #82ce34;
+                text-decoration: none;
+                transition: all 0.4s;
+                line-height: normal;
+                border: none;
+            }
+
+                .modal-confirm .btn:hover, .modal-confirm .btn:focus {
+                    background: #6fb32b;
+                    outline: none;
+                }
+        }
+    </style>
+}
+
+<!-- banner-2 -->
+<div class="page-head_agile_info_w3l">
+
+</div>
+<!-- //banner-2 -->
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Checkout</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- FAQ-help-page -->
+<div class="faqs-w3l">
+    <div class="container">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l">
+            Checkout & Payment
+            <span class="heading-style">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </h3>
+        <div class="rower">
+            <div class="coler-75">
+                <div class="containerer">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form id="checkout" method="post" asp-action="Checkout">
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label class="control-label">Full Name</label>
+                                    <input class="form-control" type="text" name="Fullname" placeholder="Full Name" required>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label class="control-label">Phone Number</label>
+                                    <input name="Phone" placeholder="Phone Number" class="form-control" type="tel" required>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label class="control-label">Delivery Address</label>
+                                    <input name="DeliveryAddress" placeholder="Delivery Address" class="form-control" required>
+                                </div>
+                                
+                                <div class="checkout-right-basket">
+                                    <button href="#myModal" type="button" onclick="submitCheckoutForm(this)" value="Continue to checkout" class=" submit check_out btn btn-success trigger-btn">
+                                        Make a Payment
+                                        <span class="fa fa-hand-holding-usd" aria-hidden="true"></span>
+
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="checkout-right">
+                            <div class="vertical_post check_box_agile">
+
+                                <div class="checkbox">
+                                    <div class="check_box_one cashon_delivery">
+                                        <label class="anim">
+                                            <input type="checkbox" class="checkbox" required>
+                                            <span> We accept Credit/Debit card on delivery. Please Check with the delivery agent.</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                                    <div>
+                                        <div id="tab4" class="tab-grid" style="display: block;">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="pp-img" src="/images/paypal.png" alt="Image Alternative text" title="Image Title">
+                                                    <p>Important: You will be redirected to PayPal's website to securely complete your payment.</p>
+                                                    <a class="btn btn-primary">Checkout via Paypal</a>
+                                                </div>
+                                                <div class="col-md-6 number-paymk">
+                                                    <form class="cc-form">
+                                                        <div class="clearfix">
+                                                            <div class="form-group form-group-cc-number">
+                                                                <label>Card Number</label>
+                                                                <input class="form-control" placeholder="xxxx xxxx xxxx xxxx" type="text" required>
+                                                                <span class="cc-card-icon"></span>
+                                                            </div>
+                                                            <div class="form-group form-group-cc-cvc">
+                                                                <label>CVV</label>
+                                                                <input class="form-control" placeholder="xxxx" type="text" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">
+                                                            <div class="form-group form-group-cc-name">
+                                                                <label>Card Holder Name</label>
+                                                                <input class="form-control" type="text" required>
+                                                            </div>
+                                                            <div class="form-group form-group-cc-date">
+                                                                <label>Valid Thru</label>
+                                                                <input class="form-control" placeholder="mm/yy" type="text" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="submit" class="submit" value="Proceed Payment">
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                       
+                           
+                <!-- //payment page -->
+            }
+            else
+            {
+                <div class="row justify-content-center">
+                    <div class="card col-md-12">
+                        <div class="bg-light">
+                            <h1 class="tagcolor" style="color:mediumblue">Login</h1>
+                            <p class="tagcolor" style="color:mediumblue">Please fill in this form to login</p>
+                            <hr class="tagcolor" style="color:mediumblue">
+
+                        </div>
+                        <form asp-action="Login" asp-controller="Customer">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Email/Username</label>
+                                    <input class="form-control" placeholder="Enter email" name="Name" type="text" required />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Password</label>
+                                    <input class="form-control" placeholder="Enter password" name="Password" type="password" required />
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" required> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <input name="isCheckout" type="hidden" hidden value="true" />
+                            <div class="form-group">
+                                <input type="submit" value="Login" class="btn btn-success" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <hr />
+                <div class="row justify-content-center">
+                    <div class=" card col-md-12">
+                        <div class="card-body ">
+                            <div class="bg-light">
+                                <h1 class="tagcolor" style="color:mediumblue">Register</h1>
+                                <p class="tagcolor" style="color:mediumblue">Please fill in this form to create an account.</p>
+                                <hr class="tagcolor" style="color:mediumblue">
+
+                            </div>
+                            <form asp-action="Create" asp-controller="Customer">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label">Name</label>
+                                        <input name="Name" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label">Email</label>
+                                        <input name="Email" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label">Password</label>
+                                        <input type="password" name="Password" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <input name="isCheckout" type="hidden" hidden value="true" />
+                                <div class="form-group ">
+                                    <input type="submit" value="Submit" class="btn btn-success col-sm-12" />
+                                </div>
+                            </form>
+                            <p>
+                                <a href="#">By clicking register, I agree to your terms</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            }
+                </div>
+            </div>
+
+            <div class="coler-25">
+                <div class="containerer">
+                    <div class="notification text-success">
+                        <h5>
+                            Shopping Basket<i class="fa fa-fw fa-shopping-cart"></i><span class="badge" id='newTotalQuantityLabel'></span>
+
+                        </h5>
+                    </div>
+                    <div class="card-body " id="cart-menu">
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <i class="material-icons">&#xE876;</i>
+                        </div>
+                        <h4 class="modal-title w-100">Awesome!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        @section Scripts {
+
+            <script>
+                function submitCheckoutForm(e) {
+                    let form = document.querySelector("#checkout");
+                    const cart = localStorage.getItem("cart") || "[]";
+                    const json = JSON.parse(cart);
+                    let count = 0;
+                    json.forEach(item => {
+                        $('#checkout').append(`<input type='hidden' name='orders[${count}].itemId' value='${item.itemId}' />`);
+                        $('#checkout').append(`<input type='hidden' name='orders[${count}].quantity' value='${item.quantity}' />`);
+                        count++;
+                    });
+                    form.submit();
+                }
+            </script>
+        }

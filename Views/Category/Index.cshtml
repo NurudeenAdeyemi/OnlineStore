@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OnlineStore.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product Category</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+
+            <th>
+                Edit
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelCategory => category.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelCategory => category.CategoryName)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@category.ID">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@category.ID">Details</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@category.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
